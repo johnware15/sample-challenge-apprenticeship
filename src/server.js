@@ -27,6 +27,8 @@ export function start() { // eslint-disable-line import/prefer-default-export
     res.status(404).render('common/error', {error: err})
   })
 
+  app.use(signUpRoute)
+
   app.listen(PORT, () => {
     console.log(`Listening on http://localhost:${PORT}...`) // eslint-disable-line no-console
   })
