@@ -1,18 +1,20 @@
-import signUp from 'src/actions/signUp.js'
-import db from 'src/db/index.js'
+import express from 'express'
+import signUp from '../actions'
 
-const signUpRoute = db.post('/sign-up', (req, res) => {
+const router = express.Router()
+
+const signUpRoute = router.post('/sign-up', (req, res) => {
   const newUser = req.body
   signUp(req.body.name, req.body.email, req.body.password)
-    .then((newUser) => {
+    .then(() => {
       if (newUser !== null) {
         res.render('/')
       } else {
-        console.log('Fill everything out')
+        // console.log('Fill everything out')
         res.render('/sign-up')
       }
     })
-    .catch(error)
+    .catch(error => error)
 })
 
 module.exports = signUpRoute

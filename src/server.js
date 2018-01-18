@@ -3,6 +3,9 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 import routes from './routes'
+import signUpRoute from './routes/users'
+import signInRoute from './routes/authentication'
+import albums from './routes/albums'
 
 export function start() { // eslint-disable-line import/prefer-default-export
   const PORT = process.env.PORT || 3000
@@ -28,6 +31,10 @@ export function start() { // eslint-disable-line import/prefer-default-export
   })
 
   app.use(signUpRoute)
+
+  app.use(albums)
+
+  app.use(signInRoute)
 
   app.listen(PORT, () => {
     console.log(`Listening on http://localhost:${PORT}...`) // eslint-disable-line no-console
