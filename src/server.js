@@ -30,13 +30,14 @@ export function start() { // eslint-disable-line import/prefer-default-export
     res.status(404).render('common/error', {error: err})
   })
 
+
+  app.listen(PORT, () => {
+    console.log(`Listening on http://localhost:${PORT}...`) // eslint-disable-line no-console
+  })
+
   app.use(signUpRoute)
 
   app.use(albums)
 
   app.use(signInRoute)
-
-  app.listen(PORT, () => {
-    console.log(`Listening on http://localhost:${PORT}...`) // eslint-disable-line no-console
-  })
 }
